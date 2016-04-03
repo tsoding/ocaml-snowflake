@@ -38,10 +38,17 @@ let rec draw_snowflake degree length level center =
     foreach (draw_line center) endpoints;
     foreach (draw_snowflake degree (length /. 3.0) (level - 1)) endpoints
 
+let parse_args () =
+  let default_degree = 6 in
+  let default_level = 4 in
+  match Array.to_list Sys.argv with
+  | _ :: degree :: [] -> (int_of_string degree, default_level)
+  | _ :: degree :: level :: _ -> (int_of_string degree, int_of_string level)
+  | _ -> (default_degree, default_level)
+
 let _ =
-  let degree = 6 in
-  let level = 4 in
-  let center = ((float_of_int window_width) /. 2.0, 
+  let (degree, level) = parse_args () in
+  let center = ((float_of_int window_width) /. 2.0,
                 (float_of_int window_height) /. 2.0) in
   let length = (float_of_int (min window_width window_height)) /. 3.0 in
   open_graph "";
