@@ -5,9 +5,7 @@ let window_height = 600
 
 let pi = 3.1415
 
-let round x = 
-  let y = x -. (floor x) in
-  if y < 0.5 then int_of_float (floor x) else int_of_float (ceil x)
+let round x = int_of_float (floor (x +. 0.5))
 
 let int_range a b =
   let rec int_range_rec l a b =
