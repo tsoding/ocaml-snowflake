@@ -24,16 +24,19 @@ let draw_line start finish =
   moveto (round start_x) (round start_y);
   lineto (round finish_x) (round finish_y)
 
+let rec foreach action elements =
+  match elements with
+  | [] -> ()
+  | element :: restElements -> action element;
+                               foreach action restElements
+
 let rec draw_snowflake degree length level center =
   if level > 0 then
     let alpha = 2.0 *. pi /. (float_of_int degree) in
     let endpoints = List.map (branch_endpoint center length alpha) 
                              (int_range 0 (degree - 1)) in
-    List.map (draw_line center) endpoints;
-    List.map (draw_snowflake degree (length /. 3.0) (level - 1)) endpoints;
-    ()
-  else
-    ()
+    foreach (draw_line center) endpoints;
+    foreach (draw_snowflake degree (length /. 3.0) (level - 1)) endpoints
 
 let _ =
   let degree = 6 in
