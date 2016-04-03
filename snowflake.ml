@@ -54,4 +54,4 @@ let _ =
   open_graph "";
   resize_window window_width window_height;
   draw_snowflake degree length level center;
-  read_line ()
+  loop_at_exit [] (fun _ -> ())
