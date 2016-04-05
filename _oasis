@@ -1,0 +1,18 @@
+OASISFormat: 0.4
+BuildTools: ocamlbuild
+Plugins: META (0.4), DevFiles (0.4)
+
+Name: Snowflake
+Version: 0.1
+Synopsis: A program that draws snowflake.
+Authors: Alexey Kutepov <reximkut@gmail.com>
+License: MIT
+
+Description: FooBar allows to draw snowflake efficiently.
+Homepage: https://github.com/rexim/ocaml-snowflake
+
+Executable "snowflake"
+  Path: src
+  MainIs: snowflake.ml
+  BuildDepends:
+    graphics

@@ -23,5 +23,3 @@ _build/
 setup.data
 setup.log
 
-# executable
-snowflake
